@@ -38,28 +38,29 @@ namespace ExcelController
                 {
 
                     /*
-                     * Id, type, Title, Url, Current Column, Column entry, Column Exit, Age
+                     * Id, type, Title, area path, Url, Current Column, Column entry, Column Exit, Age
                      */
                     //if (!wi.ColumnExitDate.Equals("9999-01-01T00:00:00Z"))
 
                     ((Range)sheet.Cells[currRow, 1]).Value2 = wi.WorkItemId;
                     ((Range)sheet.Cells[currRow, 2]).Value2 = wi.WorkItemType;
                     ((Range)sheet.Cells[currRow, 3]).Value2 = wi.Title;
-                    ((Range)sheet.Cells[currRow, 4]).Value2 = wi.Url;
-                    ((Range)sheet.Cells[currRow, 5]).Value2 = wi.CurrentColumn;
-                    ((Range)sheet.Cells[currRow, 6]).Value2 = DateTime.Parse(wi.ColumnEntryDate, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal).ToString();
+                    ((Range)sheet.Cells[currRow, 4]).Value2 = wi.AreaPath;
+                    ((Range)sheet.Cells[currRow, 5]).Value2 = wi.Url;
+                    ((Range)sheet.Cells[currRow, 6]).Value2 = wi.CurrentColumn;
+                    ((Range)sheet.Cells[currRow, 7]).Value2 = DateTime.Parse(wi.ColumnEntryDate, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal).ToString();
 
                     if (!string.IsNullOrWhiteSpace(wi.ColumnExitDate))
                     {
-                        ((Range)sheet.Cells[currRow, 7]).Value2 = DateTime.Parse(wi.ColumnExitDate, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal).ToString();
+                        ((Range)sheet.Cells[currRow, 8]).Value2 = DateTime.Parse(wi.ColumnExitDate, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal).ToString();
                     }
                     else
                     {
-                        ((Range)sheet.Cells[currRow, 7]).Value2 = DateTime.UtcNow.ToString();
+                        ((Range)sheet.Cells[currRow, 8]).Value2 = DateTime.UtcNow.ToString();
                     }
                     
-                    string formula = $"=(G{currRow}-F{currRow})";
-                    ((Range)sheet.Cells[currRow, 8]).Formula = formula;
+                    string formula = $"=(H{currRow}-G{currRow})";
+                    ((Range)sheet.Cells[currRow, 9]).Formula = formula;
                     currRow++;
                 }
 
@@ -118,11 +119,12 @@ namespace ExcelController
             ((Range)sheet.Cells[headerRow, 1]).Value2 = "Work Item Id";
             ((Range)sheet.Cells[headerRow, 2]).Value2 = "Work Item Type";
             ((Range)sheet.Cells[headerRow, 3]).Value2 = "Title";
-            ((Range)sheet.Cells[headerRow, 4]).Value2 = "URL";
-            ((Range)sheet.Cells[headerRow, 5]).Value2 = "BoardColumn";
-            ((Range)sheet.Cells[headerRow, 6]).Value2 = "Column Entry";
-            ((Range)sheet.Cells[headerRow, 7]).Value2 = "Column Exit";
-            ((Range)sheet.Cells[headerRow, 8]).Value2 = "Age";
+            ((Range)sheet.Cells[headerRow, 4]).Value2 = "Area Path";
+            ((Range)sheet.Cells[headerRow, 5]).Value2 = "URL";
+            ((Range)sheet.Cells[headerRow, 6]).Value2 = "BoardColumn";
+            ((Range)sheet.Cells[headerRow, 7]).Value2 = "Column Entry";
+            ((Range)sheet.Cells[headerRow, 8]).Value2 = "Column Exit";
+            ((Range)sheet.Cells[headerRow, 9]).Value2 = "Age";
         }
 
 
