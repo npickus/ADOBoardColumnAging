@@ -111,9 +111,10 @@ WHERE
                         var cad = new ColumnAgingData
                         {
                             WorkItemId = workItem.id,
-                            Url = workItem.url,
+                            Url = String.Join("/",Settings.BASE, Settings.ORG, Settings.PROJ, "_workitems/edit", workItem.id),
                             WorkItemType = workItem.fields.WorkItemType,
                             Title = workItem.fields.Title,
+                            AreaPath = workItem.fields.AreaPath,
                             CurrentColumn = (!string.IsNullOrEmpty(workItem.fields.BoardColumn)) ? workItem.fields.BoardColumn : "New",
                             ColumnEntryDate = (!string.IsNullOrEmpty(workItem.fields.ColumnEntryDate)) ? workItem.fields.ColumnEntryDate : workItem.fields.ChangedDate
                         };
