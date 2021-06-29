@@ -37,8 +37,13 @@ namespace AzDOController.JsonData
 
         [JsonProperty("System.BoardColumn")]
         public string BoardColumn { get; set; }
+        
+        [JsonProperty("System.AreaPath")]
+        public string AreaPath { get; set; }
+        
         [JsonProperty("System.State")]
         public string State { get; set; }
+        
         public string ActiveDate { get; set; }
 
         public string ClosedDate { get; set; }
